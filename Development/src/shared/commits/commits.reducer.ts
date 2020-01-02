@@ -15,7 +15,7 @@ export function commitsReducer(state: any, action: ActionPayload) {
                 _loading: false,
                 _error: false,
                 _action: CommitsActions.GET_SUCCESS,
-                data: action.payload.alerts,
+                data: action.payload,
                 subgroups: action.payload.subgroups
             });
         case CommitsActions.GET_FAIL:

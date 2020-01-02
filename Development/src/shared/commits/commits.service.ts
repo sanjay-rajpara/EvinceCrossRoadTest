@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { CommitsItemModel } from './commits.model';
 import { timeout } from 'rxjs/operators';
 
-@Injectable( )
+@Injectable()
 export class CommitsService {
     private _commits: Observable<CommitsState>;
     constructor(private store: Store<AppStore>,
@@ -20,14 +20,15 @@ export class CommitsService {
         return this._commits;
     }
     public fetch(data) {
+
         this.commitsActions.get(data);
     }
     public reset() {
         this.commitsActions.reset();
     }
-    
 
-    
+
+
 }
 
 @Injectable()
@@ -35,12 +36,11 @@ export class CommitsRequestService {
 
     constructor(private http: HttpClient) {
     }
-     public get(payload) {
-        //https://api.github.com/repos/sanjay-rajpara/EvinceCrossRoadTes
-            return this.http.get('https://api.github.com/repos/' +payload.name+ '/'+ payload.repoName
-            );
- 
+    public get(payload) {
+        return this.http.get('https://api.github.com/repos/' + payload.name + '/' + payload.repoName
+        );
+
     }
- 
+
 
 }

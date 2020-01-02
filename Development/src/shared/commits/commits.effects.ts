@@ -28,8 +28,10 @@ export class CommitsEffects {
     @Effect() get$ = this.actions$.pipe(
         ofType(CommitsActions.GET)
         , mergeMap((data: ActionPayload) => {
+        
             return this.commitsRequestService.get(data.payload)
                 .map(res => {
+                    debugger
                     return createAction(
                         CommitsActions.GET_SUCCESS,res
                     );
