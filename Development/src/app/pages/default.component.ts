@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommitsService } from '../../shared/commits/commits.service';
 import { CommitsState, BranchObject, RootObject } from '../../shared/commits/commits.model';
 import { CommitsActions } from '../../shared/commits/commits.actions';
+import { DefaultService } from './default.service';
 
 /**
  * Default page.
@@ -32,7 +33,9 @@ export class DefaultComponent implements OnInit,OnDestroy {
   public constructor(public renderer: Renderer2,
     public router: Router,
     public activatedRoute: ActivatedRoute,
-    public commitsService: CommitsService) {
+    public commitsService: CommitsService,
+    public defaultService: DefaultService) {
+
   }
 
 
@@ -66,7 +69,8 @@ export class DefaultComponent implements OnInit,OnDestroy {
         this.dataFound=true;
         
         this.commitList=commits.data;
-        console.log("this.commitList=>",this.commitList)
+        this.defaultService.listCommits.push(this.commitList);
+        console.log("this.commitList=>",this.defaultService.listCommits)
       }
     }); 
     // this._branchEvent = this.commitsService.get().subscribe((commits: CommitsState) => {
