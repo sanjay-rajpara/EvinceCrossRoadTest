@@ -40,7 +40,8 @@ export class CommitsRequestService {
     constructor(private http: HttpClient) {
     }
     public get(payload) {
-        return this.http.get('https://api.github.com/repos/' + payload.name + '/' + payload.repoName +'/commits/'+payload.commitSha
+        return this.http.get('https://api.github.com/repos/' + payload.name + '/'
+         + payload.repoName +'/commits'
         );
 
     }
@@ -50,7 +51,5 @@ export class CommitsRequestService {
         return this.http.get('https://api.github.com/repos/' + payload.name + '/' + payload.repoName +'/branches/'+ payload.branchName
         );
 
-    }
-
-// f8e9fceac2e89ac5c90ba298a2c8aab7a223dc91
+    } 
 }

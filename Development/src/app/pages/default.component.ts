@@ -3,8 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommitsService } from '../../shared/commits/commits.service';
 import { CommitsState, BranchObject, RootObject } from '../../shared/commits/commits.model';
 import { CommitsActions } from '../../shared/commits/commits.actions';
-import { DefaultService } from './default.service';
-
+ 
 /**
  * Default page.
  *
@@ -33,8 +32,7 @@ export class DefaultComponent implements OnInit,OnDestroy {
   public constructor(public renderer: Renderer2,
     public router: Router,
     public activatedRoute: ActivatedRoute,
-    public commitsService: CommitsService,
-    public defaultService: DefaultService) {
+    public commitsService: CommitsService ) {
 
   }
 
@@ -56,10 +54,9 @@ export class DefaultComponent implements OnInit,OnDestroy {
         
        if(commits && commits.branchData)
        {
-         let sha=commits.branchData.commit['sha'];
+         //let sha=commits.branchData.commit['sha'];
         this.commitsService.reset();
-        this.commitsList(sha);
-        
+        this.commitsList();
        }
       }
       else if (commits._action == CommitsActions.GET_FAIL) {
@@ -69,8 +66,8 @@ export class DefaultComponent implements OnInit,OnDestroy {
         this.dataFound=true;
         
         this.commitList=commits.data;
-        this.defaultService.listCommits.push(this.commitList);
-        console.log("this.commitList=>",this.defaultService.listCommits)
+        
+        console.log("this.commitList=>",this.commitList)
       }
     }); 
     // this._branchEvent = this.commitsService.get().subscribe((commits: CommitsState) => {
@@ -90,12 +87,12 @@ export class DefaultComponent implements OnInit,OnDestroy {
   /**
    * API call to commitsList
    */
-  public commitsList(sha) {
+  public commitsList() {
     
     let sendPayload={
       name:this.repoUserName,
       repoName:this.repoName,
-      commitSha:sha
+     // commitSha:sha
     }
      this.commitsService.fetch(sendPayload);
   }

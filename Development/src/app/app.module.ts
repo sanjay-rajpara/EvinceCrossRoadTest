@@ -12,7 +12,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { CommitsRequestService, CommitsService } from '../shared/commits/commits.service';
 import { CommitsActions } from '../shared/commits/commits.actions';
 import { CommitsEffects } from '../shared/commits/commits.effects';
-import { DefaultService} from "./pages/default.service";
 import { DefaultComponent } from "./pages/default.component";
 
 @NgModule({
@@ -36,7 +35,7 @@ import { DefaultComponent } from "./pages/default.component";
 
   providers: [ CommitsRequestService,
     CommitsService,
-    CommitsActions,DefaultService],
+    CommitsActions],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
