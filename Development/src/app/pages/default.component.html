@@ -1,43 +1,41 @@
+<h3>
+    Git '{{repoName}}' Repository Commits History for 'Master' Branch
+  </h3>
+  <div class="main-page-wrapper">
+  <div *ngIf="dataFound" class="items-wrapper">
+    <div class="item-wrapper">
+      <div class="item-sha">
+        SHA
+      </div>
+      <div class="item-email">
+        Author Email
+      </div>
+      <div class="item-name">
+        Message
+      </div>
 
-<div class="main-page-wrapper productList-grid">
-    <div class="card-body">
-         Master Branch - Commits History
-      </div>    
-    <div *ngIf="dataFound" class="items-wrapper" >
-        <div class="item-wrapper">
-            <div class="item-ean" >
-                SHA
-            </div>
-            <div class="item-brand">
-                Author
-            </div>
-            <div class="item-name">
-                Message
-            </div>
-             
 
+    </div>
+    <div >
+
+      <div *ngFor="let item of commitList; let i = index" class="item-wrapper">
+
+
+        <div class="item-sha">
+          {{item.sha}}
         </div>
-        <div class="planogram-grid-inner">
-        
-             <div *ngFor="let item of commitList; let i = index" class="item-wrapper" >
+        <div class="item-email">
+          {{item.commit.author.email}}
+        </div>
+        <div class="item-name">
+          {{item.commit.message}}
+        </div>
 
 
-                <div class="item-ean">
-                    {{item.sha}}
-                </div>
-                <div class="item-brand">
-                    {{item.commit.author.name}}
-                </div>
-                <div class="item-name">
-                    {{item.commit.message}}
-                </div>
-               
+      </div>
 
-            </div>
-       
     </div>
-           
-    </div>
+
+  </div>
 
 </div>
-

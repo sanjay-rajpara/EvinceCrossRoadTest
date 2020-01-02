@@ -22,8 +22,7 @@ export class DefaultComponent implements OnInit,OnDestroy {
   public repoName = 'EvinceCrossRoadTest';
   public branchName = 'develop';
   public _urlFrom = '';
-  public _commitsEvent;
-  public _branchEvent;
+  public _commitsEvent; 
   public _routeParamsEvent;
   public error: string = '';
   public commitList:RootObject;
@@ -44,35 +43,17 @@ export class DefaultComponent implements OnInit,OnDestroy {
         this._urlFrom = params.from;
       }
     });
-    this.branchList();
+    this.commitsList();
+   // this.branchList();
     this._commitsEvent = this.commitsService.get().subscribe((commits: CommitsState) => {
-      if (commits._action == CommitsActions.GET_SHA_FAIL) {
-        this.error = commits._error;
-      }
-      else if (commits._action == CommitsActions.GET_SHA_SUCCESS) {
-        this.branchData=commits.branchData;
-        
-       if(commits && commits.branchData)
-       {
-         //let sha=commits.branchData.commit['sha'];
-        this.commitsService.reset();
-        this.commitsList();
-       }
-      }
-      else if (commits._action == CommitsActions.GET_FAIL) {
+     if (commits._action == CommitsActions.GET_FAIL) {
         this.error = commits._error;
       }
       else if (commits._action == CommitsActions.GET_SUCCESS) {
         this.dataFound=true;
-        
         this.commitList=commits.data;
-        
-        console.log("this.commitList=>",this.commitList)
       }
     }); 
-    // this._branchEvent = this.commitsService.get().subscribe((commits: CommitsState) => {
-     
-    // }); 
 
   }
 
@@ -95,17 +76,6 @@ export class DefaultComponent implements OnInit,OnDestroy {
      // commitSha:sha
     }
      this.commitsService.fetch(sendPayload);
-  }
-  public branchList() {
-    
-    let sendPayload={
-      name:this.repoUserName,
-      repoName:this.repoName,
-      branchName:this.branchName
-    }
-     this.commitsService.fetchBrancheSha(sendPayload);
-
-    
   }
  
 }
