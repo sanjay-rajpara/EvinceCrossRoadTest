@@ -6,8 +6,7 @@ import { CommitsActions } from './commits.actions';
 import { Observable } from 'rxjs';
 import { CommitsState } from './commits.model';
 import { HttpClient } from '@angular/common/http';
-import { CommitsItemModel } from './commits.model';
-import { timeout } from 'rxjs/operators';
+
 
 @Injectable()
 export class CommitsService {
@@ -23,6 +22,10 @@ export class CommitsService {
 
         this.commitsActions.get(data);
     }
+    public fetchBrancheSha(data) {
+
+        this.commitsActions.getBranchSha(data);
+    }
     public reset() {
         this.commitsActions.reset();
     }
@@ -37,10 +40,17 @@ export class CommitsRequestService {
     constructor(private http: HttpClient) {
     }
     public get(payload) {
-        return this.http.get('https://api.github.com/repos/' + payload.name + '/' + payload.repoName +'/commits'
+        return this.http.get('https://api.github.com/repos/' + payload.name + '/' + payload.repoName +'/commits/'+payload.commitSha
         );
 
     }
 
+    public getBranchSha(payload) {
+        
+        return this.http.get('https://api.github.com/repos/' + payload.name + '/' + payload.repoName +'/branches/'+ payload.branchName
+        );
 
+    }
+
+// f8e9fceac2e89ac5c90ba298a2c8aab7a223dc91
 }

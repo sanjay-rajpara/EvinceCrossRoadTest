@@ -31,8 +31,7 @@ export class CommitsEffects {
         
             return this.commitsRequestService.get(data.payload)
                 .map(res => {
-                    debugger
-                    return createAction(
+                     return createAction(
                         CommitsActions.GET_SUCCESS,res
                     );
                 }).catch((res: HttpErrorResponse) => {
@@ -41,7 +40,21 @@ export class CommitsEffects {
                 });
         }));
 
-
+        @Effect() getBranchSha$ = this.actions$.pipe(
+            ofType(CommitsActions.GET_SHA)
+            , mergeMap((data: ActionPayload) => {
+            
+                return this.commitsRequestService.getBranchSha(data.payload)
+                    .map(res => {
+                        return createAction(
+                            CommitsActions.GET_SHA_SUCCESS,res
+                        );
+                    }).catch((res: HttpErrorResponse) => {
+                        console.log("error=>", res);
+                         return Observable.of(createAction(CommitsActions.GET_SHA_FAIL, res));
+                    });
+            }));
+    
 
 
 }

@@ -1,11 +1,18 @@
-<div >
+<div>
   <div class="logo mr-auto ml-auto">
-   
+
   </div>
   <div class="card card-login mr-auto ml-auto mt-2">
     <div class="card-body">
-     Default loaded
+      /Branch
+    <ng-container *ngIf="dataFound">
+      <br /><span> &nbsp;&nbsp;{{branchData.name}}</span>
+
+      <!-- <div *ngFor="let item of commitList; let i = index">
+        <span> {{item.sha}}</span>
+        <span>{{item.commit.message}}</span>
+      </div> -->
+    </ng-container>
     </div>
   </div>
 </div>
- 

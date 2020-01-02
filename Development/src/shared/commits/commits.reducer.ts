@@ -24,6 +24,25 @@ export function commitsReducer(state: any, action: ActionPayload) {
                 _action: CommitsActions.GET_FAIL,
             });
  
+            case CommitsActions.GET_SHA:
+                return Object.assign({}, state, {
+                    _loading: true,
+                    _error: false,
+                    _action: CommitsActions.GET_SHA,
+                });
+            case CommitsActions.GET_SHA_SUCCESS:
+                return Object.assign({}, state, {
+                    _loading: false,
+                    _error: false,
+                    _action: CommitsActions.GET_SHA_SUCCESS,
+                    branchData: action.payload,
+                    subgroups: action.payload.subgroups
+                });
+            case CommitsActions.GET_SHA_FAIL:
+                return Object.assign({}, state, {
+                    _error: action.payload,
+                    _action: CommitsActions.GET_SHA_FAIL,
+                });
         case CommitsActions.RESET:
             return Object.assign({}, state, commitsInitialState);
         default:
