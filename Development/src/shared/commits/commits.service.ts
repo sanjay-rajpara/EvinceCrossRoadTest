@@ -37,7 +37,7 @@ export class CommitsRequestService {
     constructor(private http: HttpClient) {
     }
     public get(payload) {
-        return this.http.get('https://api.github.com/repos/' + payload.name + '/' + payload.repoName
+        return this.http.get('https://api.github.com/repos/' + payload.name + '/' + payload.repoName +'/commits'
         );
 
     }

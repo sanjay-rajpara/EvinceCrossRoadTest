@@ -24,6 +24,7 @@ export class DefaultComponent implements OnInit,OnDestroy {
   public _commitsEvent;
   public _routeParamsEvent;
   public error: string = '';
+  public commitList:any;
   public constructor(public renderer: Renderer2,
     public router: Router,
     public activatedRoute: ActivatedRoute,
@@ -46,7 +47,7 @@ export class DefaultComponent implements OnInit,OnDestroy {
         this.commitsService.get()
       }
       else if (commits._action == CommitsActions.GET_SUCCESS) {
-
+        this.commitList=commits.data;
       }
     }); 
    this.commitsList();
