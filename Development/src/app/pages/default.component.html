@@ -3,7 +3,7 @@
   </h3>
   <div class="main-page-wrapper">
   <div *ngIf="dataFound" class="items-wrapper">
-    <div class="item-wrapper">
+    <div class="item-wrapper header-bg">
       <div class="item-sha">
         SHA
       </div>
@@ -11,9 +11,11 @@
         Author Email
       </div>
       <div class="item-name">
-        Message
+        Comments
       </div>
-
+      <div class="item-date">
+        Commit Date Time
+      </div>
 
     </div>
     <div >
@@ -30,7 +32,9 @@
         <div class="item-name">
           {{item.commit.message}}
         </div>
-
+        <div class="item-date">
+          {{item.commit.author.date}}
+        </div>
 
       </div>
 

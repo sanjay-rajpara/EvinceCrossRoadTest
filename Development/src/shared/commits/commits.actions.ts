@@ -18,7 +18,10 @@ export class CommitsActions {
   constructor(
     private store: Store<AppStore>
   ) { }
-
+/**
+ * get Method to load dispatch 
+ * @param payload 
+ */
   public get(payload) {
     this.store.dispatch(createAction(CommitsActions.GET, payload));
   }

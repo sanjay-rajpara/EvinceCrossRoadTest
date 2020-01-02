@@ -32,7 +32,7 @@ export class CommitsEffects {
             return this.commitsRequestService.get(data.payload)
                 .map(res => {
                      return createAction(
-                        CommitsActions.GET_SUCCESS,res
+                        CommitsActions.GET_SUCCESS,this.commitsRequestService.convertDateFormate(res)
                     );
                 }).catch((res: HttpErrorResponse) => {
                     console.log("error=>", res);

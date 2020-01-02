@@ -35,7 +35,9 @@ export class DefaultComponent implements OnInit,OnDestroy {
 
   }
 
-
+/**
+ * ngOnInit event 
+ */
   public ngOnInit() {
 
     this._routeParamsEvent = this.activatedRoute.queryParams.subscribe((params) => {
@@ -44,7 +46,6 @@ export class DefaultComponent implements OnInit,OnDestroy {
       }
     });
     this.commitsList();
-   // this.branchList();
     this._commitsEvent = this.commitsService.get().subscribe((commits: CommitsState) => {
      if (commits._action == CommitsActions.GET_FAIL) {
         this.error = commits._error;
@@ -52,6 +53,7 @@ export class DefaultComponent implements OnInit,OnDestroy {
       else if (commits._action == CommitsActions.GET_SUCCESS) {
         this.dataFound=true;
         this.commitList=commits.data;
+       
       }
     }); 
 
@@ -66,14 +68,14 @@ export class DefaultComponent implements OnInit,OnDestroy {
   }
 
   /**
-   * API call to commitsList
-   */
+   * commitsList method to call Service
+   **/
   public commitsList() {
     
     let sendPayload={
       name:this.repoUserName,
       repoName:this.repoName,
-     // commitSha:sha
+     
     }
      this.commitsService.fetch(sendPayload);
   }
